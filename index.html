@@ -95,10 +95,11 @@
                     const controller = new AbortController();
                     const timeoutId = setTimeout(() => controller.abort(), 60000); // Timeout 1 menit
 
-                    const response = await fetch("http://212.115.124.46:5000/api/change-proxy-ip", {
+                    const response = await fetch(`https://cors-anywhere.herokuapp.com/http://212.115.124.46:5000/api/change-proxy-ip`, {
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
+                            "X-Requested-With": "XMLHttpRequest" // Header tambahan agar request diterima oleh proxy
                         },
                         body: JSON.stringify({ proxy }),
                         signal: controller.signal
